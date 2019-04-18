@@ -1,13 +1,21 @@
+
+
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
-import { Nav, Form, FormControl, Button, Navbar } from 'react-bootstrap'
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { Nav, Form, FormControl, Button, Navbar } from 'react-bootstrap';
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye, faEyeSlash } from  "@fortawesome/free-solid-svg-icons";
 
 import Home from './page/Home';
-import Authentication from './page/Authentication'
-import Lessons from './page/Lessons'
-import SignUp from './components/SignUp'
+import Authentication from './page/Authentication';
+import Lessons from './page/Lessons';
+import SignUp from './components/SignUp';
 
 import './App.css';
+
+
+library.add(faEye,faEyeSlash)
 
 class App extends Component {
   render() {
