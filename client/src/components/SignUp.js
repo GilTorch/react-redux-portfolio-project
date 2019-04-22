@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Container, Row, Col, InputGroup, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, InputGroup } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
@@ -44,18 +44,8 @@ class SignUp extends React.Component{
   }
 
   render(){
-    const { password,passwordConfirmation,serverErrors }=this.state;
+    const { password,passwordConfirmation }=this.state;
     const { auth,dispatch }=this.props;
-    if(auth.errors){
-      const errors=auth.errors;
-      const errorMessages=Object.keys(errors).map((key)=> key+" "+errors[key][0]);
-      errorMessages.forEach(errorMessage=>toast.error(errorMessage))
-    }else{
-      if(auth.email!==null){
-        toast.success("Successfuly signed up")
-      }
-    }
-          
     return (
       <Formik
         validationSchema={schema}
@@ -174,8 +164,4 @@ class SignUp extends React.Component{
   }
 }
 
-const mapStateToProps=({ auth })=>{
-    return { auth }
-}
-
-export default connect( mapStateToProps )(SignUp);
+export default connect()(SignUp);

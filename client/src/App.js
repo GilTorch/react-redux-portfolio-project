@@ -13,13 +13,18 @@ import Home from './page/Home';
 import Authentication from './page/Authentication';
 import Lessons from './page/Lessons';
 import SignUp from './components/SignUp';
+import { connect } from 'react-redux';
+import toastMessages from './utils/flash';
 import './App.css';
 
 
 library.add(faEye,faEyeSlash,faFire,faCertificate,faBriefcase)
 
 class App extends Component {
+
   render() {
+    const { flash }=this.props; 
+    if (flash) toastMessages(flash);
     return (
       <Router>
         <Fragment>
@@ -53,4 +58,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps=({ flash })=>{
+  return { flash }
+}
+
+export default connect(mapStateToProps)(App);

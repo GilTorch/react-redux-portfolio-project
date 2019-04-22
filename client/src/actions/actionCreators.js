@@ -28,32 +28,6 @@ export function deleteUser(userId){
     }
 }
 
-// export function loading(){
-//     return {
-//         type:"LOADING"
-//     }
-// }
-
-// fetch("http://localhost:3001/users", {
-//     method: 'POST',
-//     headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(values)
-// }).then(async (response)=>{
-//     setSubmitting(false)
-//     if(response.ok){
-//         return response.text()
-//     }
-//     const jsonResponse = await response.json();
-//     return jsonResponse;
-// })
-// .then(function(text) {                          // second then()
-//     console.log('Request successful', text);  
-//   })  
-// }
-
 export function registerUser(userData) {
     return (dispatch) => {
       dispatch({ type: 'START_REGISTER' });
@@ -74,25 +48,34 @@ export function registerUser(userData) {
         .then(response => {
             const errors=JSON.parse(response).errors
             if(errors){
-                dispatch(userRegisterError(errors))
+                const errorMessages=Object.keys(errors).map((key)=> key+" "+errors[key][0]);
+                dispatch(alertFailure(errorMessages))
             }else{
-                dispatch(finishedRegisterUser(response))
+                dispatch(alertSuccess(["Successfully Registered"]))
+                dispatch(finishedRegisterUser())
             }
         });
     };
   }
 
-export function userRegisterError(errors){
+export function alertFailure(errorMessage){
     return {
-        type:"USER_REGISTER_ERROR",
-        errors
+        type:"ALERT_FAILURE",
+        errorMessage
+    }
+  }
+
+export function alertSuccess(successMessage){
+    return {
+        type:"ALERT_SUCCESS",
+        successMessage
     }
 }
 
-export function finishedRegisterUser(userData){
+
+export function finishedRegisterUser(){
     return {
-        type:"FINISHED_REGISTER",
-        userData
+        type:"FINISHED_REGISTER"
     }
 }
 
