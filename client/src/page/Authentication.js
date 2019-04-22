@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
@@ -11,7 +11,6 @@ const Authentication = () =>{
         password:yup.string().required("Password is Required")
       });
       
-    
         return(
             <Formik
                 validationSchema={schema}

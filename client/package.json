@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "dotenv": "^7.0.0",
     "formik": "^1.5.2",
     "i": "^0.3.6",
     "npm": "^6.9.0",
@@ -18,7 +19,11 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-toastify": "^5.1.0",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "superagent": "^5.0.2",
     "yup": "^0.27.0"
   },
   "scripts": {

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Form, Button, Container, Row, Col, FormGroup, InputGroup } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, InputGroup, Alert } from 'react-bootstrap';
 import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { connect } from 'react-redux';
+import { registerUser } from '../actions/actionCreators';
 import { FontAwesomeIcon } from  "@fortawesome/react-fontawesome";
+import { toast } from 'react-toastify';
 
 const schema = yup.object({
   username: yup.string().required("Username is required"),
@@ -15,6 +19,7 @@ const schema = yup.object({
 class SignUp extends React.Component{
 
   state={
+    serverErrors:null,
     password:{
       type:"password",
       hidden: true,
@@ -39,30 +44,24 @@ class SignUp extends React.Component{
   }
 
   render(){
-    const { password,passwordConfirmation }=this.state;
-
+    const { password,passwordConfirmation,serverErrors }=this.state;
+    const { auth,dispatch }=this.props;
+    if(auth.errors){
+      const errors=auth.errors;
+      const errorMessages=Object.keys(errors).map((key)=> key+" "+errors[key][0]);
+      errorMessages.forEach(errorMessage=>toast.error(errorMessage))
+    }else{
+      if(auth.email!==null){
+        toast.success("Successfuly signed up")
+      }
+    }
+          
     return (
       <Formik
         validationSchema={schema}
-        onSubmit={(values, { setSubmitting })=>{
-            fetch("http://localhost:3001/users", {
-              method: 'POST',
-              headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(values)
-          }).then(async (response)=>{
-              setSubmitting(false)
-              if(response.ok){
-                  return response.text()
-              }
-              const jsonResponse = await response.json();
-              return jsonResponse;
-          })
-          .then(function(text) {                          // second then()
-              console.log('Request successful', text);  
-            })  
+        onSubmit={ async (values, { setSubmitting })=>{
+          await dispatch(registerUser(values))
+          setSubmitting(false) 
         }}
         initialValues={{
           email: '',
@@ -128,7 +127,7 @@ class SignUp extends React.Component{
                               value={ values.password }
                               onBlur={ handleBlur } 
                               onChange={ handleChange } 
-                              placeholder="Password"
+                              placeholder="Enter password"
                               isInvalid={!!errors.password}
                               isValid={ errors.password === undefined && touched.password }
                             />
@@ -147,7 +146,7 @@ class SignUp extends React.Component{
                               name="passwordConfirmation" 
                               value={ values.passwordConfirmation } 
                               onChange={ handleChange } 
-                              placeholder="Password" 
+                              placeholder="Confirm the password" 
                               isInvalid={!!errors.passwordConfirmation}
                               isValid={ errors.passwordConfirmation === undefined && touched.passwordConfirmation }
                             />
@@ -159,6 +158,9 @@ class SignUp extends React.Component{
                             </Form.Control.Feedback>
                           </InputGroup>
                       </Form.Group>
+                      <Form.Text>
+                            Already have an account? <Link to="/login"><Button variant="warning">Log In</Button></Link>
+                        </Form.Text>
                       <Button variant="primary" type="submit" disabled={ isSubmitting }>
                           Sign Up
                       </Button>
@@ -172,5 +174,8 @@ class SignUp extends React.Component{
   }
 }
 
+const mapStateToProps=({ auth })=>{
+    return { auth }
+}
 
-export default SignUp;
+export default connect( mapStateToProps )(SignUp);

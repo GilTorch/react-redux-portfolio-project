@@ -5,23 +5,25 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Nav, Form, FormControl, Button, Navbar } from 'react-bootstrap';
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faEyeSlash } from  "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faFire, faCertificate, faBriefcase } from  "@fortawesome/free-solid-svg-icons";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './page/Home';
 import Authentication from './page/Authentication';
 import Lessons from './page/Lessons';
 import SignUp from './components/SignUp';
-
 import './App.css';
 
 
-library.add(faEye,faEyeSlash)
+library.add(faEye,faEyeSlash,faFire,faCertificate,faBriefcase)
 
 class App extends Component {
   render() {
     return (
       <Router>
         <Fragment>
+          <ToastContainer/>
             <Navbar bg="primary" variant="dark">
               <Navbar.Brand href="#home">WE Code</Navbar.Brand>
               <Nav className="mr-auto">
