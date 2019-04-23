@@ -1,12 +1,5 @@
 
 
-export function loginUser(userData){
-    return {
-        type:"LOGIN_USER",
-        userData
-    }
-}
-
 export function updateUser(userData){
     return {
         type:"UPDATE_USER",
@@ -28,10 +21,49 @@ export function deleteUser(userId){
     }
 }
 
+export function finishedLogin(){
+    return {
+        type:"FINISHED_USER"
+    }
+}
+
+export function loginUser(userData) {
+    return (dispatch) => {
+      dispatch({ type: 'START_LOGIN' });
+      return fetch(`${process.env.REACT_APP_DEV_API_URL}:${process.env.REACT_APP_DEV_API_PORT}/login`,{
+          method:"POST",
+          headers:{
+              'Accept':'application/json',
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(userData)
+      }).then(async (response)=>{
+            if(response.ok){
+                return response.text()
+            }
+            const jsonResponse = await response.json();
+            return jsonResponse;
+            })
+        .then(response => {
+            const errors=JSON.parse(response).errors
+            if(errors){
+                console.log("ERRORS:"+errors);
+                const errorMessages=Object.keys(errors).map((key)=> key+" "+errors[key][0]);
+                dispatch(alertFailure(errorMessages))
+            }else{
+                console.log("SUCCESS:"+response);
+                dispatch(alertSuccess(["Successfully Logged In"]))
+                localStorage.setItem('users', JSON.stringify(response));
+                dispatch(finishedLogin())
+            }
+        });
+    };
+  }
+
 export function registerUser(userData) {
     return (dispatch) => {
       dispatch({ type: 'START_REGISTER' });
-      return fetch('http://localhost:3001/users',{
+      return fetch(`${process.env.REACT_APP_DEV_API_URL}:${process.env.REACT_APP_DEV_API_PORT}/users`,{
           method:"POST",
           headers:{
               'Accept':'application/json',

@@ -6,7 +6,6 @@ import * as yup from 'yup';
 import { connect } from 'react-redux';
 import { registerUser } from '../actions/actionCreators';
 import { FontAwesomeIcon } from  "@fortawesome/react-fontawesome";
-import { toast } from 'react-toastify';
 
 const schema = yup.object({
   username: yup.string().required("Username is required"),
@@ -45,7 +44,10 @@ class SignUp extends React.Component{
 
   render(){
     const { password,passwordConfirmation }=this.state;
-    const { auth,dispatch }=this.props;
+    const { dispatch,registering,history }=this.props;
+    if(registering==="done"){
+      history.push("/login")
+    }
     return (
       <Formik
         validationSchema={schema}
@@ -154,7 +156,7 @@ class SignUp extends React.Component{
                       <Button variant="primary" type="submit" disabled={ isSubmitting }>
                           Sign Up
                       </Button>
-                  </Form>;
+                  </Form>
               </Col>
           </Row>
       </Container>
@@ -163,5 +165,9 @@ class SignUp extends React.Component{
     )
   }
 }
-
-export default connect()(SignUp);
+const mapStateToProps=({ auth })=>{
+  return {
+    registering: auth.registering
+  }
+}
+export default connect(mapStateToProps)(SignUp);

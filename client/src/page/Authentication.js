@@ -3,8 +3,11 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { connect } from 'react-redux';
 
-const Authentication = () =>{
+import { loginUser } from '../actions/actionCreators';
+
+const Authentication = ({ dispatch }) =>{
 
     const schema = yup.object({
         email:yup.string().email().required("Email is required"),
@@ -21,7 +24,7 @@ const Authentication = () =>{
                    }
                 }
                 onSubmit={(values, { setSubmitting })=>{
-                    console.log(JSON.stringify(values))
+                    dispatch(loginUser(values));
                     setSubmitting(false)
                 }}
             >
@@ -85,4 +88,4 @@ const Authentication = () =>{
         )
 }
 
-export default Authentication;
+export default connect()(Authentication);
