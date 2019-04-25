@@ -56,11 +56,11 @@ export function loginUser(userData) {
   }
 
 export function logout(){
-    const userData={user:{id:null,username:null,email:null,admin:null,user_lessons:[]}}
-    localStorage.setItem('users',userData);
-        return {
-            type:"LOG_OUT"
-        }
+    localStorage.removeItem('users');
+    return (dispatch) => {
+        dispatch(alertFailure(["Logged Out"]))
+        dispatch({type:"LOG_OUT"})
+    }
 }
 
 export function updateLoginState(userData){

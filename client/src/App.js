@@ -8,14 +8,17 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye, faEyeSlash, faFire, faCertificate, faBriefcase } from  "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import Home from './page/Home';
 import Authentication from './page/Authentication';
 import Lessons from './page/Lessons';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
+import Footer from './components/Footer';
+
 import { connect } from 'react-redux';
 import toastMessages from './utils/flash';
-import { updateLoginState,logout } from './actions/actionCreators';
+import { updateLoginState,logout, alertFailure } from './actions/actionCreators';
 import './App.css';
 
 
@@ -23,20 +26,25 @@ library.add(faEye,faEyeSlash,faFire,faCertificate,faBriefcase)
 
 class App extends Component {
 
-
-  render() {
-    const { auth,flash,dispatch }=this.props;
+  UNSAFE_componentWillReceiveProps(nextProps){
+    const { flash,auth,dispatch}=nextProps;
 
     if (flash) toastMessages(flash);
     const userData=localStorage.getItem("users");
-    if(userData && userData!=="[object Object]"){
+    if(userData){
       console.log(JSON.stringify(userData));
       if(auth.login===null || auth.login==="pending"){
         dispatch(updateLoginState(userData))
       }
     }
 
+  }
+
+  render() {
+    const { auth,dispatch }=this.props;
+
     return (
+      <Fragment>
       <Router>
         <Fragment>
           <ToastContainer/>
@@ -47,26 +55,23 @@ class App extends Component {
                   Home
               </NavLink>
               { auth.login === "done"?
-                (
-                <React.Fragment>
-                <NavLink className="nav-link" to="/profile">
-                 {auth.user.username}'s Profile
-                </NavLink>
-                <Button variant="danger" onClick={()=>dispatch(logout())}>
-                  Logout
-                </Button>
-                </React.Fragment>
-                )
+                <Fragment>
+                  <NavLink className="nav-link" to="/profile">
+                  {auth.user.username}'s Profile
+                  </NavLink>
+                  <Button variant="danger" onClick={()=>dispatch(logout())}>
+                    Logout
+                  </Button>
+                </Fragment>
                 :
-                <React.Fragment>
+                <Fragment>
                   <NavLink className="nav-link" exact to="/login">
                     Log In
                   </NavLink>
                   <NavLink className="nav-link" exact to="/signup">
                     Sign Up 
                   </NavLink>
-                </React.Fragment>
-
+                </Fragment>
               }
             </Nav>
             <Form inline>
@@ -82,7 +87,13 @@ class App extends Component {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signup" component={Profile} />
         </Fragment>
-      </Router>
+      </Router> 
+      <Footer>
+          <p className="text-center">
+            Copyright 2019 Gilbert
+          </p>
+      </Footer>
+      </Fragment>
     );
   }
 }
@@ -93,5 +104,8 @@ const mapStateToProps=( state )=>{
     auth:state.auth
   }
 }
+
+
+
 
 export default connect(mapStateToProps)(App);

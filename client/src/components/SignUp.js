@@ -41,12 +41,16 @@ class SignUp extends React.Component{
     })
   }
 
-  render(){
-    const { password,passwordConfirmation }=this.state;
-    const { dispatch,registering,history }=this.props;
+  UNSAFE_componentWillReceiveProps(nextProps){
+    const { }=nexe
     if(registering==="done"){
       history.push("/login")
     }
+  }
+  render(){
+    const { password,passwordConfirmation }=this.state;
+    const { dispatch }=this.props;
+
     return (
       <Formik
         validationSchema={schema}
@@ -75,6 +79,7 @@ class SignUp extends React.Component{
           <Row>
               <Col md={{span:6, offset: 3}}>   
                   <Form onSubmit={ handleSubmit}>
+                      <h1 className="text-center">Sign Up</h1>
                       <Form.Group controlId="formBasicUsername">
                           <Form.Label>Username</Form.Label>
                           <Form.Control 

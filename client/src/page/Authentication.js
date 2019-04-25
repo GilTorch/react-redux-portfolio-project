@@ -44,6 +44,7 @@ class Authentication extends React.Component{
                   isSubmitting
                 }) => (
                     <Container className="mt-3 mt-4">
+                        <h1 className="text-center">Log In</h1>
                     <Row>
                         <Col md={{span:6, offset: 3}}>   
                             <Form onSubmit={handleSubmit}>
