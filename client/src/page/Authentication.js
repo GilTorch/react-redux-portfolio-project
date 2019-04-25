@@ -79,7 +79,7 @@ const Authentication = ({ dispatch }) =>{
                                 <Button variant="primary" type="submit" disabled={ isSubmitting }>
                                     Log In 
                                 </Button>
-                            </Form>;
+                            </Form>
                         </Col>
                     </Row>
                 </Container>

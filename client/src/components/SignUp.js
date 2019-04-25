@@ -18,7 +18,6 @@ const schema = yup.object({
 class SignUp extends React.Component{
 
   state={
-    serverErrors:null,
     password:{
       type:"password",
       hidden: true,

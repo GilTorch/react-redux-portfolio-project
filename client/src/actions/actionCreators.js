@@ -21,11 +21,6 @@ export function deleteUser(userId){
     }
 }
 
-export function finishedLogin(){
-    return {
-        type:"FINISHED_USER"
-    }
-}
 
 export function loginUser(userData) {
     return (dispatch) => {
@@ -51,14 +46,29 @@ export function loginUser(userData) {
                 const errorMessages=Object.keys(errors).map((key)=> key+" "+errors[key][0]);
                 dispatch(alertFailure(errorMessages))
             }else{
-                console.log("SUCCESS:"+response);
+                // console.log("SUCCESS:"+response);
+                localStorage.setItem('users', response);
                 dispatch(alertSuccess(["Successfully Logged In"]))
-                localStorage.setItem('users', JSON.stringify(response));
-                dispatch(finishedLogin())
+                // dispatch(finishedLogin())
             }
         });
     };
   }
+
+export function logout(){
+    const userData={user:{id:null,username:null,email:null,admin:null,user_lessons:[]}}
+    localStorage.setItem('users',userData);
+        return {
+            type:"LOG_OUT"
+        }
+}
+
+export function updateLoginState(userData){
+    return {
+        type:"FINISH_LOGIN",
+        userData
+    }
+}
 
 export function registerUser(userData) {
     return (dispatch) => {
