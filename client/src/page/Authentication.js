@@ -7,13 +7,18 @@ import { connect } from 'react-redux';
 
 import { loginUser } from '../actions/actionCreators';
 
-const Authentication = ({ dispatch }) =>{
+class Authentication extends React.Component{
 
-    const schema = yup.object({
-        email:yup.string().email().required("Email is required"),
-        password:yup.string().required("Password is Required")
-      });
-      
+      render(){
+        const schema = yup.object({
+            email:yup.string().email().required("Email is required"),
+            password:yup.string().required("Password is Required")
+          });
+
+        const { dispatch,history,login }=this.props;
+        
+        if (login==="done") history.push("/profile")
+
         return(
             <Formik
                 validationSchema={schema}
@@ -86,6 +91,15 @@ const Authentication = ({ dispatch }) =>{
                 )}
             </Formik>
         )
+      }
+      
+    
 }
 
-export default connect()(Authentication);
+const mapStateToProps=( state )=>{
+    return {
+      login:state.auth.login
+    }
+  }
+
+export default connect(mapStateToProps)(Authentication);

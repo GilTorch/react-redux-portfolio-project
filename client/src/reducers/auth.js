@@ -12,7 +12,7 @@ function auth(state={user:{id:null,username:null,email:null,admin:null,user_less
             console.log("USER ID:"+userData.id)
             return { ...state,registering:null,user:{id:userData.id,username:userData.username,email:userData.email,admin:userData.admin,user_lessons:userData.user_lessons},login:"done"}
         case "LOG_OUT":
-            return { ...state,user:{id:null,username:null,email:null,admin:null,user_lessons:[]},login:null,logout:"done"}
+            return { ...state,user:{id:null,username:null,email:null,admin:null,user_lessons:[]},login:null,logout:"done",registering:null}
 
             // return {logout:"done",login:null,registering:null,...state,user:{id:null,username:null,email:null,admin:false,user_lessons:[]}}
         default:

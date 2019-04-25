@@ -50,7 +50,7 @@ class App extends Component {
                 (
                 <React.Fragment>
                 <NavLink className="nav-link" to="/profile">
-                 Profile
+                 {auth.user.username}'s Profile
                 </NavLink>
                 <Button variant="danger" onClick={()=>dispatch(logout())}>
                   Logout
@@ -58,9 +58,15 @@ class App extends Component {
                 </React.Fragment>
                 )
                 :
-                <NavLink className="nav-link" exact to="/login">
+                <React.Fragment>
+                  <NavLink className="nav-link" exact to="/login">
                     Log In
-                </NavLink>
+                  </NavLink>
+                  <NavLink className="nav-link" exact to="/signup">
+                    Sign Up 
+                  </NavLink>
+                </React.Fragment>
+
               }
             </Nav>
             <Form inline>

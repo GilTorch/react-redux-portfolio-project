@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 class Profile extends Component{
     render(){
-        const { user }=this.props;
+        const { user,logout,history }=this.props;
+        if(logout==="done") history.push("/login")
         return(
             <div className="text-center">
                 <h1>{user.username}</h1>
@@ -14,8 +15,11 @@ class Profile extends Component{
     }
 }
 
-const mapStateToProps=( state)=>{
-  return { user:state.auth.user } 
+const mapStateToProps=( state )=>{
+  return { 
+      logout:state.auth.logout,
+      user:state.auth.user 
+  } 
 }
 
 export default connect( mapStateToProps )(Profile);
