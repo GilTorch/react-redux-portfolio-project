@@ -8,10 +8,27 @@
   color:white;
 }
 
+.nav-link-dropdown:link,.nav-link-dropdown:active,.nav-link-dropdown:visited{
+  color:#111;
+}
+
 .nav-link:hover{
   text-decoration: none;
   background-color:#FFA200;
   box-shadow: 0px 0px 1px #cccccc;
   color:black;
   border-radius:2px;
+}
+
+.dropdown-item:hover{
+  background-color:#eee;
+}
+
+.dropdown-item{
+  padding:auto
+}
+
+.home{
+  /* display:"none"; */
+  height:100vh;
 }

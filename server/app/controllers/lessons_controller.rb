@@ -4,9 +4,27 @@ class LessonsController < ApplicationController
         render json: lessons, status: 200
     end
 
+    def complete 
+        @lesson=Lesson.find_by(params[:lessonId])
+        @user=User.find_by(params[:current_user_id]);
+        if @lesson && @user
+            user_lesson=UserLesson.find_or_create_by(lesson_id:@lesson.id,user_id:@user.id)
+            if user_lesson
+                user_lesson.completed=true
+                user_lesson.save 
+                render json: {lesson:@lesson,user_lesson:user_lesson}, status: 200
+            end
+        end
+    end
+
     def show 
         lesson = Lesson.find_by(id:params[:id])
-        render json: lesson, status: 200
+        if lesson
+            user_lesson=UserLesson.find_or_create_by(lesson_id:lesson.id,user_id:params[:current_user_id])
+            render json: {lesson:lesson,user_lesson:user_lesson}, status: 200
+        else 
+            render json: { errors: ["No Lesson found for that id"]}
+        end
     end
 
     def create 

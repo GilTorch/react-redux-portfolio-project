@@ -40,6 +40,7 @@ export function loginUser(userData) {
             return jsonResponse;
             })
         .then(response => {
+            console.log(JSON.stringify(response))
             const errors=JSON.parse(response).errors
             if(errors){
                 console.log("ERRORS:"+errors);
@@ -55,7 +56,58 @@ export function loginUser(userData) {
     };
   }
 
-export function logout(){
+export function getLessons(){
+    return (dispatch)=>{
+        dispatch({ type: "START_GETTING_LESSONS" })
+        return fetch(`${process.env.REACT_APP_DEV_API_URL}:${process.env.REACT_APP_DEV_API_PORT}/lessons`)
+            .then(async (response)=> await response.json())
+            .then((jsonResponse)=>{
+                dispatch({type:"FINISHED_GETTING_LESSONS",payload:jsonResponse})
+            })
+    }
+}
+
+export function completeLesson(lessonId,userId){
+    return (dispatch)=>{
+        dispatch({type:"START_COMPLETING_LESSON"})
+        return fetch(`${process.env.REACT_APP_DEV_API_URL}:${process.env.REACT_APP_DEV_API_PORT}/lessons/${lessonId}/complete?current_user_id=${userId}`)
+            .then(async (response)=> await response.json())
+            .then((jsonResponse)=>{
+                console.log("YEAHH!")
+                dispatch({type:"FINISHED_COMPLETING_LESSON",payload:jsonResponse})
+            })
+    }
+}
+
+export function getLesson(lessonId){
+    return (dispatch)=>{
+        const userData=JSON.parse(localStorage.getItem('users'));
+        dispatch({ type: "START_GETTING_LESSON" })
+        return fetch(`${process.env.REACT_APP_DEV_API_URL}:${process.env.REACT_APP_DEV_API_PORT}/lessons/${lessonId}?current_user_id=${userData['id']}`)
+            .then(async (response)=>{
+                if(response.ok){
+                    return response.text()
+                }
+                const jsonResponse = await response.json();
+                return jsonResponse;
+            })
+            .then((jsonResponse)=>{
+                const errors=JSON.parse(jsonResponse).errors
+                if(errors){
+                    console.log("ERRORS:"+errors);
+                    const errorMessages=Object.keys(errors).map((key)=> key+" "+errors[key][0]);
+                    dispatch(alertFailure(errorMessages))
+                }else{
+                    dispatch({type:"FINISHED_GETTING_LESSON",payload:jsonResponse})
+
+                }
+            })
+    }
+}
+
+export function logout(){ // componentDidMount(){
+
+    // }
     localStorage.removeItem('users');
     return (dispatch) => {
         dispatch(alertFailure(["Logged Out"]))

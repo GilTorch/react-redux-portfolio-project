@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Nav, Form, FormControl, Button, Navbar } from 'react-bootstrap';
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faEyeSlash, faFire, faCertificate, faBriefcase } from  "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faFire, faCertificate, faBriefcase, faSpinner,faCircle,faCheckCircle } from  "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,29 +15,35 @@ import Lessons from './page/Lessons';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
+import LessonPage from './page/LessonPage';
 
 import { connect } from 'react-redux';
 import toastMessages from './utils/flash';
-import { updateLoginState,logout, alertFailure } from './actions/actionCreators';
+import { updateLoginState,logout } from './actions/actionCreators';
+import { Dropdown } from 'react-bootstrap';
 import './App.css';
 
 
-library.add(faEye,faEyeSlash,faFire,faCertificate,faBriefcase)
+library.add(faEye,faEyeSlash,faFire,faCertificate,faBriefcase,faSpinner,faCircle,faCheckCircle)
 
 class App extends Component {
 
-  UNSAFE_componentWillReceiveProps(nextProps){
+  state={}
+
+ static getDerivedStateFromProps(nextProps){
+
     const { flash,auth,dispatch}=nextProps;
 
     if (flash) toastMessages(flash);
     const userData=localStorage.getItem("users");
+    console.log(userData);
     if(userData){
       console.log(JSON.stringify(userData));
       if(auth.login===null || auth.login==="pending"){
         dispatch(updateLoginState(userData))
       }
     }
-
+    return null
   }
 
   render() {
@@ -55,13 +61,24 @@ class App extends Component {
                   Home
               </NavLink>
               { auth.login === "done"?
-                <Fragment>
-                  <NavLink className="nav-link" to="/profile">
-                  {auth.user.username}'s Profile
+                <Fragment>    
+                    <Dropdown>
+                      <Dropdown.Toggle id="dropdown-basic">
+                      {auth.user.username}'s Profile
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <div className="dropdown-item">
+                          <NavLink className="nav-link-dropdown" to="/profile"> Your Profile</NavLink>
+                        </div>
+                        <hr></hr>
+                        <div className="dropdown-item">
+                          <Button variant="danger" onClick={()=>dispatch(logout())}>Logout</Button>
+                        </div>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  <NavLink className="nav-link" to="/lessons">
+                      Curriculum
                   </NavLink>
-                  <Button variant="danger" onClick={()=>dispatch(logout())}>
-                    Logout
-                  </Button>
                 </Fragment>
                 :
                 <Fragment>
@@ -84,13 +101,13 @@ class App extends Component {
           <Route exact path="/login" component={Authentication} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/lessons" component={Lessons} />
+          <Route exact path="/lessons/:id" component={LessonPage} />
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/signup" component={Profile} />
         </Fragment>
       </Router> 
       <Footer>
           <p className="text-center">
-            Copyright 2019 Gilbert
+            &copy;Copyright 2019 Gilbert
           </p>
       </Footer>
       </Fragment>
@@ -104,8 +121,5 @@ const mapStateToProps=( state )=>{
     auth:state.auth
   }
 }
-
-
-
 
 export default connect(mapStateToProps)(App);

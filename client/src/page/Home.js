@@ -3,11 +3,10 @@ import { Jumbotron, Button, Col,Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from  "@fortawesome/react-fontawesome";
 
-
 class Home extends Component{
     render(){
         return(
-            <div>
+            <div className="home">
                 <Jumbotron>
                     <h4 className="display-4 text-center">Learn To Code For Free<span style={{"fontSize":"100px"}}>.</span></h4>
                     <Row>

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_04_16_152206) do
   create_table "user_lessons", force: :cascade do |t|
     t.integer "user_id"
     t.integer "lesson_id"
-    t.boolean "completed"
+    t.boolean "completed", default: false
   end
 
   create_table "users", force: :cascade do |t|

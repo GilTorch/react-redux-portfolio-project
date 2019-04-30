@@ -8,6 +8,12 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/actionCreators';
 
 class Authentication extends React.Component{
+      state={}
+      static getDerivedStateFromProps(nextProps){
+        const { login,history }=nextProps;
+        if (login==="done") history.push("/profile")
+        return null;
+      }
 
       render(){
         const schema = yup.object({
@@ -15,9 +21,7 @@ class Authentication extends React.Component{
             password:yup.string().required("Password is Required")
           });
 
-        const { dispatch,history,login }=this.props;
-        
-        if (login==="done") history.push("/profile")
+        const { dispatch }=this.props;
 
         return(
             <Formik

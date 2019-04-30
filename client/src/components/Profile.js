@@ -1,15 +1,20 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 class Profile extends Component{
+
+    state={} 
+
+    static getDerivedStateFromProps(nextProps){
+        const { login,history }=nextProps;
+        if(login!=="done") history.push("/login");
+        return null;
+    }
+
     render(){
-        const { user,logout,login,history }=this.props;
-        if(logout==="done") history.push("/login")
-        const redirecting= login !=="done" ? <Redirect to="/login"/> : null;
+        const { user }=this.props;
         return(
             <div className="text-center profile-card">
-                {redirecting}
                 <h1>{user.username}</h1>
                 <p>{user.email}</p>
                 <p>{user.admin ? "ADMIN":""}</p>
@@ -17,6 +22,7 @@ class Profile extends Component{
         )
     }
 }
+
 
 const mapStateToProps=( state )=>{
   return { 

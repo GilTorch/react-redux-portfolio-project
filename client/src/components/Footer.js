@@ -22,7 +22,7 @@ const Footer=({ children })=>{
     return (
         <div>
             <div style={phantom} />
-            <div style={style}>
+            <div>
                 { children }
             </div>
         </div>
