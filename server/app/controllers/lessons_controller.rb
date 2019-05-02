@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+    skip_before_action :verify_authenticity_token  
     def index 
         lessons = Lesson.all 
         render json: lessons, status: 200
@@ -32,7 +33,7 @@ class LessonsController < ApplicationController
         if lesson.save 
             render json: lesson, status: 200
         else 
-            render json: lesson.errors, status: 500
+            render json: {errors:lesson.errors}, status: 500
         end
     end
 
@@ -47,6 +48,6 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params 
-        params.require(:lesson).permit(:title,:content)
+        params.permit(:title,:content)
     end
 end

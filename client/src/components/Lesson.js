@@ -50,13 +50,14 @@ class Lesson extends Component {
         let { lesson } = this.props;
         let loading = lesson.loading;
         let data = lesson.data;
-        let completed=(data && !data.user_lesson.completed) ? <FontAwesomeIcon style={style.icon.failure} icon="circle"/> : <FontAwesomeIcon style={style.icon.success} icon="check-circle"/>
+        let completedIcon=(data && !data.user_lesson.completed) ? <FontAwesomeIcon style={style.icon.failure} icon="circle"/> : <FontAwesomeIcon style={style.icon.success} icon="check-circle"/>
+        let completed= data ? data.user_lesson.completed : false;
         // debugger;
         return (
             <div>
                 {loading === false ?
                     <div className="lesson-container">
-                        <h1 className="jumbotron text-center">{data.lesson.title} {completed}</h1>
+                        <h1 className="jumbotron text-center">{data.lesson.title} {completedIcon}</h1>
                         <p  style={style.content}>{data.lesson.content}</p>
                         <Button style={style.button} disabled={completed} onClick={this.markLessonAsComplete} className="col-md-4 offset-md-4 mt-3" variant={"success"}>Mark as Read <FontAwesomeIcon icon="check-circle"/></Button>
                     </div>

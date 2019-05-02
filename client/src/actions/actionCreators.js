@@ -152,6 +152,44 @@ export function registerUser(userData) {
     };
   }
 
+export function registerLesson(values){
+    return (dispatch)=>{
+        dispatch({type:"START_REGISTERING_LESSON"})
+        return fetch(`${process.env.REACT_APP_DEV_API_URL}:${process.env.REACT_APP_DEV_API_PORT}/lessons`,{
+            method:"POST",
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(values)
+        })
+        .then(async (response)=>{
+            if(response.ok){
+                return response.text()
+            }
+            const jsonResponse = await response.json();
+            return jsonResponse;
+            })
+        .then((response)=>{
+            const errors=response.errors
+            if(errors){
+                const errorMessages=Object.keys(errors).map((key)=> key+" "+errors[key][0]);
+                dispatch(alertFailure(errorMessages))
+            }else{
+                dispatch(alertSuccess(["Successfully Registered"]))
+                dispatch(finishedRegisteringLesson(response))
+            }
+        })
+    }
+}
+
+export function finishedRegisteringLesson(lessonData){
+    return {
+        type:"FINISHED_REGISTERING_LESSON",
+        lessonData
+    }
+}
+
 export function alertFailure(errorMessage){
     return {
         type:"ALERT_FAILURE",

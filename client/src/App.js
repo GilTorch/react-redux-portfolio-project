@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './page/Home';
 import Authentication from './page/Authentication';
-import Lessons from './page/Lessons';
+import Lessons from './components/Lessons';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
@@ -22,6 +22,7 @@ import toastMessages from './utils/flash';
 import { updateLoginState,logout } from './actions/actionCreators';
 import { Dropdown } from 'react-bootstrap';
 import './App.css';
+import Dashboard from './page/Dashboard';
 
 
 library.add(faEye,faEyeSlash,faFire,faCertificate,faBriefcase,faSpinner,faCircle,faCheckCircle)
@@ -79,6 +80,13 @@ class App extends Component {
                   <NavLink className="nav-link" to="/lessons">
                       Curriculum
                   </NavLink>
+                  {auth.user.admin ?
+                    <NavLink to="/dashboard" className="btn btn-danger">
+                      Dashboard
+                    </NavLink>
+                    :
+                    null
+                  }
                 </Fragment>
                 :
                 <Fragment>
@@ -103,6 +111,7 @@ class App extends Component {
           <Route exact path="/lessons" component={Lessons} />
           <Route exact path="/lessons/:id" component={LessonPage} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/dashboard" component={Dashboard}/>
         </Fragment>
       </Router> 
       <Footer>

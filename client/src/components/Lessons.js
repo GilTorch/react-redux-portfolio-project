@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import { getLessons } from '../actions/actionCreators';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Lesson from '../components/Lesson';
+
 
 const style={
     minHeight:"500px",
