@@ -5,14 +5,13 @@ class LessonsController < ApplicationController
     end
 
     def complete 
-        @lesson=Lesson.find_by(params[:lessonId])
-        @user=User.find_by(params[:current_user_id]);
+        @lesson=Lesson.find_by(id:params[:id])
+        @user=User.find_by(id:params[:current_user_id]);
         if @lesson && @user
             user_lesson=UserLesson.find_or_create_by(lesson_id:@lesson.id,user_id:@user.id)
-            if user_lesson
-                user_lesson.completed=true
-                user_lesson.save 
-                render json: {lesson:@lesson,user_lesson:user_lesson}, status: 200
+            user_lesson.completed=true
+            if user_lesson.save 
+                render json: {lesson:@lesson,user_lesson:user_lesson}, status: 200 
             end
         end
     end

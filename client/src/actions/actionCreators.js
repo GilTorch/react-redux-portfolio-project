@@ -71,11 +71,11 @@ export function completeLesson(lessonId,userId){
     return (dispatch)=>{
         dispatch({type:"START_COMPLETING_LESSON"})
         return fetch(`${process.env.REACT_APP_DEV_API_URL}:${process.env.REACT_APP_DEV_API_PORT}/lessons/${lessonId}/complete?current_user_id=${userId}`)
-            .then(async (response)=> await response.json())
-            .then((jsonResponse)=>{
-                console.log("YEAHH!")
-                dispatch({type:"FINISHED_COMPLETING_LESSON",payload:jsonResponse})
-            })
+                .then(async (response)=> await response.json())
+                .then((jsonResponse)=>{
+                    console.log("YEAHH!:"+jsonResponse);
+                    dispatch({type:"FINISHED_COMPLETING_LESSON",payload:jsonResponse})
+                })
     }
 }
 

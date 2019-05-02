@@ -43,7 +43,6 @@ class Lesson extends Component {
 
     markLessonAsComplete=()=>{
         const { lesson,auth }=this.props;
-        console.log(lesson.data.title)
         this.props.dispatch(completeLesson(lesson.data.lesson.id,auth.user.id))
     }
 
@@ -59,7 +58,7 @@ class Lesson extends Component {
                     <div className="lesson-container">
                         <h1 className="jumbotron text-center">{data.lesson.title} {completed}</h1>
                         <p  style={style.content}>{data.lesson.content}</p>
-                        <Button style={style.button} onClick={this.markLessonAsComplete} className="col-md-4 offset-md-4 mt-3" variant={"success"}>Mark as Read <FontAwesomeIcon icon="check-circle"/></Button>
+                        <Button style={style.button} disabled={completed} onClick={this.markLessonAsComplete} className="col-md-4 offset-md-4 mt-3" variant={"success"}>Mark as Read <FontAwesomeIcon icon="check-circle"/></Button>
                     </div>
                     :
                     <Loading/>
