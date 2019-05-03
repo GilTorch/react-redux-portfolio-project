@@ -2,14 +2,13 @@ import React from 'react';
 import Lesson from '../components/Lesson';
 
 
-class LessonPage extends React.Component{
+const LessonPage=(props)=>{
 
-    render(){
         return(
-        <div>
-            <Lesson {...this.props} />
-        </div>)
-    }
+            <div>
+                <Lesson { ...props } />
+            </div>
+        )
 }
 
 export default LessonPage;

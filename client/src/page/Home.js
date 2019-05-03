@@ -3,8 +3,7 @@ import { Jumbotron, Button, Col,Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from  "@fortawesome/react-fontawesome";
 
-class Home extends Component{
-    render(){
+const Home=()=>{
         return(
             <div className="home">
                 <Jumbotron>
@@ -31,7 +30,6 @@ class Home extends Component{
                 </Jumbotron>
             </div>
         )
-    }
 }
 
 export default Home;

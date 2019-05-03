@@ -35,11 +35,8 @@ const AddLesson=({ dispatch,lesson,history })=>{
           errors,
           isSubmitting
         }) => (
-            <Container className="mt-3 mt-4">
-              <Row>
-                <Col md={{ span: 6, offset: 3 }}>
                   <Form onSubmit={handleSubmit}>
-                    <h1 className="text-center">Create A Lesson</h1>
+                    <h3 className="text-center">Create A Lesson</h3>
                     <Form.Group controlId="formBasicTitle">
                       <Form.Label>Title</Form.Label>
                       <Form.Control
@@ -81,9 +78,6 @@ const AddLesson=({ dispatch,lesson,history })=>{
                       Add
                       </Button>
                   </Form>
-                </Col>
-              </Row>
-            </Container>
           )}
       </Formik>
     )
