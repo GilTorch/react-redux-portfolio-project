@@ -10,11 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_152206) do
+ActiveRecord::Schema.define(version: 2019_08_08_135443) do
+
+  create_table "chapters", force: :cascade do |t|
+    t.string "title"
+    t.integer "track_id"
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "track_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "lessons", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "track_id"
+    t.integer "course_id"
+    t.integer "chapter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_chapters", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "chapter_id"
+    t.boolean "completed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_courses", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.boolean "completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,6 +65,14 @@ ActiveRecord::Schema.define(version: 2019_04_16_152206) do
     t.integer "user_id"
     t.integer "lesson_id"
     t.boolean "completed", default: false
+  end
+
+  create_table "user_tracks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "track_id"
+    t.boolean "completed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
