@@ -1,5 +1,7 @@
 {
   "name": "server",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "expo-cli": "^3.0.9"
+  }
 }
