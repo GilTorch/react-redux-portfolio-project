@@ -3,7 +3,7 @@ class Track < ApplicationRecord
     has_many  :chapters
     has_many  :lessons
     has_many  :user_tracks 
-    has_many  :users, through: :tracks
-    validates :title,presence: true
+    has_many  :users, through: :user_tracks
+    validates :title,presence: true,uniqueness: true
     validates :description,presence: true
 end

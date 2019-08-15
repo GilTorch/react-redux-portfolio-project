@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :lessons
   resources :users
+  resources :chapters
   resources :courses 
   resources :tracks
   get "/lessons/:id/complete",to:"lessons#complete"

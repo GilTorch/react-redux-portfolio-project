@@ -1,9 +1,9 @@
-class CoursesController < ApplicationController    
-    before_action :course, only: [:show,:update]
+class ChaptersController < ApplicationController    
+    # before_action :course, only: [:show,:update]
     
     def index 
-        courses = Course.all 
-        render json: courses, status:200
+        chapters = Chapter.all 
+        render json: chapters, status:200
     end
     
     def show 

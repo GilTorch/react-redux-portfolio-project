@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-    skip_before_action :verify_authenticity_token  
+
     def index 
         lessons = Lesson.all 
         render json: lessons, status: 200
