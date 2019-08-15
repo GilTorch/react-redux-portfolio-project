@@ -19,11 +19,11 @@ class CoursesController < ApplicationController
 
 
     def create 
-        course = Course.create(course_params)
-        if course 
+        course = Course.new(course_params)
+        if course.save 
             render json: course, status:200
         else
-            render json: { message:'Something unexpected happen' },status:500
+            render json: { errors: course.errors },status:500
         end
     end
 
