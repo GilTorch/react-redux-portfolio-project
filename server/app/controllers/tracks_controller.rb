@@ -1,5 +1,5 @@
 class TracksController < ApplicationController    
-    # before_action :track, only: [:show,:update]
+    before_action :track, only: [:show,:update]
     
     def index 
         tracks = Track.all 
@@ -7,10 +7,10 @@ class TracksController < ApplicationController
     end
     
     def show 
-        if @course 
-            render json: @course, status:200 
+        if track
+            render json: track, status:200 
         else 
-            render json:{ message:'Wrong Id'}, status:400
+            render json:{ errors: {id:["No track exist for that id "]} }, status:400
         end
     end
     
@@ -30,8 +30,8 @@ class TracksController < ApplicationController
     def update 
     end
 
-    def tracks 
-        @tracks = tracks.find_by(id:params[:id])
+    def track
+        track = Track.find_by(id:params[:id])
     end
 
     def tracks_params 
