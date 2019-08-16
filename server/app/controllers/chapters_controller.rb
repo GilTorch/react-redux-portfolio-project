@@ -7,8 +7,8 @@ class ChaptersController < ApplicationController
     end
     
     def show 
-        if @course 
-            render json: @course, status:200 
+        if chapter 
+            render json: chapter, status:200 
         else 
             render json:{ message:'Wrong Id'}, status:400
         end
@@ -17,25 +17,45 @@ class ChaptersController < ApplicationController
     def complete 
     end
 
+    
+
+    def destroy 
+        if chapter
+            if chapter.destroy 
+                render json: { success: true }, status:200 
+            else  
+                render json: { errors: ["Couldn't destroy chapter with id #{chapter.id}"]},status:500
+            end
+        else
+            render json:{ errors: ["No chapter exist for that id "] }, status:400 
+        end
+    end
+
 
     def create 
-        course = Course.create(course_params)
-        if course 
-            render json: course, status:200
+        chapter = Chapter.new(chapter_params)
+        if chapter.save 
+            render json: chapter, status:200
         else
-            render json: { message:'Something unexpected happen' },status:500
+            render json: { errors: chapter.errors },status:500
         end
     end
 
     def update 
+        chapter = Chapter.new(chapter_params)
+        if chapter.save 
+            render json: chapter, status:200
+        else
+            render json: { errors: chapter.errors },status:500
+        end
     end
 
-    def course 
-        @course = Course.find_by(id:params[:id])
+    def chapter 
+        chapter = Chapter.find_by(id:params[:id])
     end
 
-    def course_params 
-        params.permit(:title,:description)
+    def chapter_params 
+        params.permit(:title,:description,:track_id,:course_id)
     end
 
 end
