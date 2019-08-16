@@ -1,5 +1,5 @@
 class ChaptersController < ApplicationController    
-    # before_action :course, only: [:show,:update]
+    before_action :chapter, only: [:show,:update,:delete]
     
     def index 
         chapters = Chapter.all 
@@ -17,7 +17,6 @@ class ChaptersController < ApplicationController
     def complete 
     end
 
-    
 
     def destroy 
         if chapter
@@ -42,11 +41,14 @@ class ChaptersController < ApplicationController
     end
 
     def update 
-        chapter = Chapter.new(chapter_params)
-        if chapter.save 
-            render json: chapter, status:200
+        if chapter
+            if chapter.update(chapter_params) 
+                render json: chapter, status:200 
+            else  
+                render json: { errors: chapter.errors },status:500
+            end
         else
-            render json: { errors: chapter.errors },status:500
+            render json:{ errors: ["No chapter exist for that id "] }, status:400 
         end
     end
 
