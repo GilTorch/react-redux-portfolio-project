@@ -1,59 +1,66 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from 'styled-components';
 import Header from '../components/Header';
-import { mainColor } from '../utils/theme';
+import Form from '../components/Form';
+import { mainColor, mainFont, secondaryFont } from '../utils/theme';
 import Carret from '../svg/carret';
+import imgBackground from '../images/cta2-background.jpg'
+import RocketIcon from '../svg/rocket';
+import CertificateIcon from '../svg/certificate';
+import ExperienceIcon from '../svg/experience';
 
 const Home = () => {
     return (
         <HomeStyle>
             <Box>
                 <Header />
-                <WrapperOne>
+                <InnerWrapperBox1>
                     <Title>
                         Openmooc is a free online training course <Dot>.</Dot>
                     </Title>
                     <Link to="/lessons">
                         <CallToAction href="/courses">
-                            <span>Browse courses </span><Carret />
+                            <span>Get started </span><Carret />
                         </CallToAction>
                     </Link>
-                </WrapperOne>
+                </InnerWrapperBox1>
             </Box>
             <Box1>
                 <h2>Love to learn? You've come to the right place</h2>
-                <InnerWrapper>
-                    <div>
+                <InnerWrapperBox2>
+                    <div class="icons-circles-texts">
                         <div>
                             <Circle>
-                                <FontAwesomeIcon icon="fire" />
+                                <RocketIcon width="1.5em" height="1.5em" color="#fff" />
                             </Circle>
                             <p>
                                 Join a supportive community of millions of coders
-                        </p>
+                            </p>
                         </div>
                         <div>
                             <Circle>
-                                <FontAwesomeIcon icon="certificate" />
+                                <CertificateIcon width="1.5em" height="1.5em" color="#fff" />
                             </Circle>
                             <p>
                                 Build projects and earn free certifications.
-                        </p>
+                            </p>
                         </div>
                         <div>
                             <Circle>
-                                <FontAwesomeIcon icon="briefcase" />
+                                <ExperienceIcon width="1.5em" height="1.5em" color="#fff" />
                             </Circle>
                             <p>
                                 Get experience by coding for nonprofits.
-                        </p>
+                            </p>
                         </div>
                     </div>
                     <img src={require("../images/about.png")} />
-                </InnerWrapper>
+                </InnerWrapperBox2>
             </Box1>
+            <Box2>
+                <Form />
+            </Box2>
         </HomeStyle>
     )
 }
@@ -73,7 +80,7 @@ const CallToAction = styled.a`
     border-radius: 20px;
     box-shadow: 0px 2px 3px rgba(0,0,0,0.5);
     /* color:white; */
-    font-family: 'Raleway', sans-serif;
+    font-family: ${mainFont}, sans-serif;
     &:hover{
         color:#D8E9DA;
         text-decoration:none;
@@ -95,25 +102,31 @@ const HomeStyle = styled.div`
    color:white;
 `
 
-const InnerWrapper = styled.div`
+const InnerWrapperBox2 = styled.div`
     display:flex;
     flex-direction:row;
+    /* border: 1px solid red; */
     justify-content:space-around;
     align-items:center;
     color:${mainColor};
     margin-top:50px;
-    div{
+    div.icons-circles-texts{
+        width:45%;
         display:flex;
         flex-direction:column;
         justify-content:space-around;
-        margin-bottom:20px;
+        /* border: 1px solid blue; */
         div{
             display:flex;
             flex-direction:row;
             justify-content:space-around;
             align-items:center;
+            /* border: 1px solid green; */
+            padding:1%;
             p{
-                width:40%;
+                width:60%;
+                font-size: 1.5em;
+                text-align:left;
             }
         }
     }
@@ -123,8 +136,8 @@ const InnerWrapper = styled.div`
     }
 `
 const Circle = styled.div`
-  width:70px;
-  height:70px;
+  width:75px;
+  height:75px;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -135,7 +148,7 @@ const Circle = styled.div`
 `
 
 
-const WrapperOne = styled.div`
+const InnerWrapperBox1 = styled.div`
   width:100%;
   height:100%;
   display: flex;
@@ -147,43 +160,43 @@ const WrapperOne = styled.div`
 const Title = styled.h1`
 font-weight:300;
 text-align:center;
-font-family:"Roboto Slab";
+font-family:${secondaryFont};
 `
 const Dot = styled.span`
   font-size:100px;
 `
 
-
+let boxHeight = "100vh";
 
 const Box = styled.div`
    background-image: linear-gradient(to bottom right, #57995d, ${mainColor});
-   height:100vh;
+   height:${boxHeight};
    display:flex;
    flex-direction:column;
-   /* justify-content:center;
-   align-items:center; */
 `
 
 const Box1 = styled.div`
    background-color:white;
-   height:100vh;
+   height:${boxHeight};
    display:flex;
    flex-direction: column;
    padding-top:50px;
    text-align:center;
    h2{
        color:${mainColor};
-       font-family:"Roboto Slab";
+       font-family:${secondaryFont};
    }
    
 `
 
-const Description = styled.p`
-   color: ${mainColor};
-`
-
-const Icon = styled.div`
-  font-size:30px;
+const Box2 = styled.div`
+    background:url(${imgBackground});
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding-top:40px;
+    padding-bottom:40px;
 `
 
 export default Home;

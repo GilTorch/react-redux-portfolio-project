@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../svg/Logo';
 import styled from 'styled-components';
+import { mainColor } from '../utils/theme';
 
 const Header = props => (
     <header>
@@ -11,6 +12,11 @@ const Header = props => (
                 <Link href="#">About</Link>
                 <Link href="#">Courses</Link>
                 <Link href="#">Contact</Link>
+                <Register>
+                    <span>
+                        Register
+                    </span>
+                </Register>
             </NavLinks>
         </Nav>
     </header>
@@ -29,7 +35,7 @@ const Nav = styled.div`
 `
 
 const NavLinks = styled.div`
-    width:${100/3}%;
+    width:${100 / 3}%;
     height:100%;
     display:flex;
     flex-direction:row;
@@ -45,5 +51,25 @@ const Link = styled.a`
         color:white;
     }
 `
+const Register = styled.a`
+    border: 1px solid white;
+    padding:3%;
+    font-family: 'Raleway', sans-serif;
+    span{
+        color:white;
+    }
+    &:hover{
+        background-color:white;
+        color:black;
+        cursor:pointer;
+        transition:0.3s;
+        box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+        span{
+            color: ${mainColor}
+        }
+    }
+`
+
+
 
 export default Header;
