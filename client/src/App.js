@@ -25,11 +25,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
         </Fragment>
       </Router> 
-      <Footer>
-          <p className="text-center">
-            &copy;Copyright 2019 Gilbert
-          </p>
-      </Footer>
+      <Footer/>
       </Fragment>
     );
   }

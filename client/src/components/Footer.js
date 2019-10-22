@@ -1,33 +1,31 @@
 import React from 'react';
-const phantom = {
-    display: 'block',
-    padding: '20px',
-    height: '60px',
-    width: '100%',
-}
+import styled from 'styled-components';
+import { mainColor } from '../utils/theme';
 
-  const style = {
-    backgroundColor: "#F8F8F8",
-    borderTop: "1px solid #E7E7E7",
-    textAlign: "center",
-    padding: "20px",
-    position: "absolute",
-    left: "0",
-    bottom: "0",
-    height: "60px",
-    width: "100%",
-}
-
-const Footer=({ children })=>{
+const Footer = props => {
     return (
-        <div>
-            <div style={phantom} />
-            <div>
-                { children }
-            </div>
-        </div>
+        <FooterStyle>
+            <p>
+                &copy;Copyright 2019 Gilbert
+            </p>
+        </FooterStyle>
     )
 }
+
+
+const FooterStyle = styled.div`
+    background-color:${mainColor};
+    height:60px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+    p{
+        margin-top:10px;
+    }
+`
 
 export default Footer;
 
