@@ -84,6 +84,7 @@ const SignupForm = props => {
 }
 
 const Form = styled.form`
+    width:500px;
     background-color:white;
     border-radius: 5px;
     color:${mainColor};
@@ -122,7 +123,7 @@ const Form = styled.form`
         padding-left:9px;
     }
 
-    input[type="password"]{
+    input{
         width:100%;
     }
 

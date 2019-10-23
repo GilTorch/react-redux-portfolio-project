@@ -44,7 +44,6 @@ const LoginStyle = styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:center;
-
     .return-home{
         position: absolute;
         top: 20px;
@@ -78,11 +77,9 @@ const Or = styled.p`
 const FormStyle = styled.form`
     width:500px;
     background-color:white;
-    border-radius: 5px;
     color:${mainColor};
     padding:2%;
     font-family:${mainFont},sans-serif;
-
     hr{
         height:2px;
         margin-bottom:20px;

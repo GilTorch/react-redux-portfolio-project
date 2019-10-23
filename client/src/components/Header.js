@@ -13,7 +13,9 @@ const Header = props => (
                 <Link href="#">Courses</Link>
                 <Link href="#">Contact</Link>
                 <Register>
+                    <span>
                         Register
+                    </span>
                 </Register>
             </NavLinks>
         </Nav>
@@ -56,6 +58,7 @@ const Register = styled.a`
     span{
         color:white;
     }
+    
     &:hover{
         background-color:white;
         color:black;

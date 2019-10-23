@@ -9,9 +9,11 @@ const FormError = ({ children }) => (
 
 const ErrorStyle = styled.p`
     width:100%;
-    background:pink;
+    background:rgba(255,0,0,0.1);
     color:red;
     text-align:center;
-    padding:1%;
+    padding:2%;
+    margin-top:10px;
+    border-radius:5px;;
 `
 export default FormError;
