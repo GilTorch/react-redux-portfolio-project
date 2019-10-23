@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { mainColor, mainFont, secondaryFont } from '../utils/theme';
 import * as yup from 'yup';
 import useForm from 'react-hook-form';
-import Error from './Error';
+import Error from './FormError';
 
 const validationSchema = yup.object().shape({
     firstName: yup.string().required("First name is required"),

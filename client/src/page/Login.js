@@ -57,10 +57,15 @@ const FacebookLogin = styled.button`
     width:100%;
     background-color:white;
     border: 3px solid #3b5998;
-    color:#3b5998
+    color:#3b5998;
     border-radius:5px;
     height:50px;
     margin-bottom:10px;
+
+    &:hover{
+        background-color:#3b5990;
+        color:white;
+    }
 `
 
 
@@ -133,6 +138,11 @@ const Submit = styled.button`
     height:50px;
     border-radius:5px;
     color:white;
+
+    &:hover{
+        background-color:#eee;
+        color:white;
+    }
 `
 
 

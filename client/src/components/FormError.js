@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Error = ({ children }) => (
+const FormError = ({ children }) => (
     <ErrorStyle>
         { children }
     </ErrorStyle>
@@ -14,4 +14,4 @@ const ErrorStyle = styled.p`
     text-align:center;
     padding:1%;
 `
-export default Error;
+export default FormError;
