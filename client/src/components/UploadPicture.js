@@ -3,13 +3,14 @@ import UserIcon from '../svg/user';
 import styled from 'styled-components';
 import { mainColor } from '../utils/theme';
 
-const UploadPicture = props => {
+const UploadPicture = ({ onPicture }) => {
 
     const [picture, setPicture] = useState("")
 
     const handleChange = e => {
         let picture = URL.createObjectURL(new Blob([e.target.files[0]], { type: "application/zip" }));
         setPicture(picture);
+        onPicture(picture);
     }
 
     const handleRemove = e =>{
@@ -21,7 +22,7 @@ const UploadPicture = props => {
         <label>
             {
                 !picture ?
-                    <UserIcon />
+                    <UserIcon width={imageHeight} height={imageHeight} />
                     :
                     <div className="preview-image-container">
                         <PreviewImage width={imageHeight} height={imageHeight}>
@@ -55,7 +56,7 @@ const PreviewImage = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
-    
+
     img{
         width:${imageHeight};
     }

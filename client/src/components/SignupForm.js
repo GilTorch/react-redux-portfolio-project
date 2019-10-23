@@ -5,8 +5,10 @@ import { mainColor, mainFont, secondaryFont } from '../utils/theme';
 import * as yup from 'yup';
 import useForm from 'react-hook-form';
 import Error from './FormError';
+import UploadPicture from '../components/UploadPicture';
 
 const validationSchema = yup.object().shape({
+    profilePicture: yup.string(),
     firstName: yup.string().required("First name is required"),
     lastName: yup.string().required("Last name is required"),
     userName: yup.string().required("Username is required"),
@@ -18,22 +20,28 @@ const validationSchema = yup.object().shape({
 
 const SignupForm = props => {
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, errors, setValue } = useForm({
         validationSchema
     });
 
     const onSubmit = data => {
-        alert(data);
+        console.log(JSON.stringify(data));
+    }
+
+    const setProfilePicture = picture => {
+        setValue("profilePicture", picture)
     }
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Register</h2>
-            <hr />
             <div>
-                <div>
-                    <label>Choose a profile picture:</label>
-                    <input name="profilePicture" type="file" />
+                <div className="upload-picture-container">
+                    <UploadPicture  onPicture={setProfilePicture} />
+                    <input type="text" 
+                        hidden={true}
+                        name="profilePicture"
+                        ref={register}
+                    />
                 </div>
                 <FormGroupRow>
                     <div>
@@ -91,7 +99,6 @@ const Form = styled.form`
     padding:2%;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
     font-family:${mainFont},sans-serif;
-
     hr{
         height:2px;
         margin-bottom:40px;
@@ -133,6 +140,13 @@ const Form = styled.form`
 
     div.have-account{
         color:black;
+    }
+
+    div.upload-picture-container {
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
     }
 `
 
