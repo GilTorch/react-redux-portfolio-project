@@ -13,9 +13,7 @@ const Header = props => (
                 <Link href="#">Courses</Link>
                 <Link href="#">Contact</Link>
                 <Register>
-                    <span>
                         Register
-                    </span>
                 </Register>
             </NavLinks>
         </Nav>

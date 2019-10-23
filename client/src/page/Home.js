@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import Form from '../components/Form';
+import SignUpForm from '../components/SignupForm';
 import { mainColor, mainFont, secondaryFont } from '../utils/theme';
 import Carret from '../svg/carret';
 import imgBackground from '../images/cta2-background.jpg'
@@ -59,7 +59,7 @@ const Home = () => {
                 </InnerWrapperBox2>
             </Box1>
             <Box2>
-                <Form />
+                <SignUpForm />
             </Box2>
         </HomeStyle>
     )
