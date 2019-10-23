@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { mainColor, mainFont, secondaryFont } from '../utils/theme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -44,7 +45,7 @@ const Form = props => (
         </div>
         <div>
             <p>
-                Already have an account? <a href="#">Log In</a>
+                Already have an account? <Link to="/login">Log in</Link>
             </p>
         </div>
         <Submit>
