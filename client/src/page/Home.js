@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Typing from 'react-typing-animation';
-import Header from '../components/Header';
 import SignUpForm from '../components/SignupForm';
 import { mainColor, mainFont, secondaryFont } from '../utils/theme';
 import Carret from '../svg/carret';
@@ -11,13 +10,14 @@ import RocketIcon from '../svg/rocket';
 import CertificateIcon from '../svg/certificate';
 import ExperienceIcon from '../svg/experience';
 
+const Cursor = props => <div className="cursor">&lt;.</div>;
+
 const Home = () => {
     return (
         <HomeStyle>
             <Box>
-                <Header />
                 <InnerWrapperBox1>
-                    <Typing cursorClassName="yes">
+                    <Typing cursor={<Cursor/>}>
                         <Title>
                             Openmooc is a free online training course <Dot>.</Dot>
                         </Title>
@@ -61,7 +61,7 @@ const Home = () => {
                     <img src={require("../images/about.png")} />
                 </InnerWrapperBox2>
             </Box1>
-            <Box2>
+            <Box2 id="register">
                 <SignUpForm />
             </Box2>
         </HomeStyle>
@@ -105,8 +105,9 @@ const HomeStyle = styled.div`
    color:white;
 
    .cursor{
-       background-color:white;
-       color:white;
+       display:inline-block;
+       color:black;
+       font-weight:light;
    }
 `
 
@@ -169,7 +170,7 @@ const Title = styled.h1`
 font-weight:300;
 text-align:center;
 font-family:${secondaryFont};
-margin-bottom:5%;s
+margin-bottom:5%;
 `
 const Dot = styled.span`
   font-size:100px;
@@ -178,7 +179,7 @@ const Dot = styled.span`
 let boxHeight = "100vh";
 
 const Box = styled.div`
-   background-image: linear-gradient(to bottom right, #57995d, ${mainColor});
+   background-image: linear-gradient(to bottom right, #57995D, ${mainColor});
    height:${boxHeight};
    display:flex;
    flex-direction:column;

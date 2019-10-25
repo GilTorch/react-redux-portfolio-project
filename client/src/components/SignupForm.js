@@ -170,6 +170,11 @@ const Submit = styled.button`
     height:50px;
     border-radius:5px;
     color:white;
+    
+    &:hover{
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.5);
+        transition:0.5s;
+    }
 `
 
 

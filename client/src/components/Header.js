@@ -1,37 +1,58 @@
 import React from 'react';
+import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 import Logo from '../svg/Logo';
 import styled from 'styled-components';
 import { mainColor } from '../utils/theme';
 
 const Header = props => (
-    <header>
+    <HeaderStyle>
         <Nav>
-            <a href="#"><Logo /></a>
+            <Link to="/">
+               <Logo />
+            </Link>
             <NavLinks>
-                <Link href="#">Home</Link>
-                <Link href="#">About</Link>
-                <Link href="#">Courses</Link>
-                <Link href="#">Contact</Link>
-                <Register>
-                    <span>
-                        Register
-                    </span>
-                </Register>
+                <Link to="/">
+                    <LinkStyle>Home</LinkStyle>
+                </Link>
+                <Link to="/about">
+                    <LinkStyle>About</LinkStyle>
+                </Link>
+                <Link to="/courses">
+                    <LinkStyle>Courses</LinkStyle>
+                </Link>
+                    <Register>
+                        <HashLink to="/#register">
+                            <span>
+                                Register
+                            </span>
+                        </HashLink>
+                    </Register>
             </NavLinks>
         </Nav>
-    </header>
+    </HeaderStyle>
 )
 
+const HeaderStyle = styled.div`
+   background-image: linear-gradient(to right,#57995D, ${mainColor});
+   width:100%;
+   position:absolute;
+   top:0;
+   left:0;
+   height:60px;
+   flex-direction:row;
+   justify-content: space-around;
+   align-items:center;
+`
 
 
 const Nav = styled.div`
-    width:100%;
-    height:80px;
+    height:100%;
     display:flex;
     flex-direction:row;
     justify-content: space-around;
     align-items:center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    /* border-bottom: 1px solid rgba(255,255,255,0.1); */
 `
 
 const NavLinks = styled.div`
@@ -44,7 +65,7 @@ const NavLinks = styled.div`
     list-style-type:none;
 `
 
-const Link = styled.a`
+const LinkStyle = styled.span`
     color:white;
     font-family: 'Raleway', sans-serif;
     &:hover{
@@ -52,8 +73,9 @@ const Link = styled.a`
     }
 `
 const Register = styled.a`
+    display:inline-block;
     border: 1px solid white;
-    padding:3%;
+    padding:2%;
     font-family: 'Raleway', sans-serif;
     span{
         color:white;

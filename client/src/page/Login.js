@@ -10,11 +10,6 @@ const Login = props => {
 
     return (
         <LoginStyle>
-            <div className="return-home">
-                <Link to="/">
-                    Return Home
-            </Link>
-            </div>
             <FormStyle>
                 <FacebookLogin onMouseEnter={()=>setIconColor("#fff")} onMouseLeave={()=>setIconColor("#475993")}>
                     <Facebook fill={iconColor}/> Log in with facebook
@@ -49,12 +44,6 @@ const LoginStyle = styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    .return-home{
-        position: absolute;
-        top: 20px;
-        left: 20px;
-    }
-
 `
 
 const FacebookLogin = styled.button`
@@ -114,8 +103,8 @@ const FormStyle = styled.form`
     }
 
     input[type="password"],input[type="email"]{
-        border: 3px solid ${mainColor};
-        background-color:#fff;
+        border: none;
+        background-color:#eee;
         height:40px;
         border-radius:5px;
         padding-left:9px;
