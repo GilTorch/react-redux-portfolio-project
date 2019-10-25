@@ -19,7 +19,8 @@ const Home = () => {
                 <InnerWrapperBox1>
                     <Typing cursor={<Cursor/>}>
                         <Title>
-                            Openmooc is a free online training course <Dot>.</Dot>
+                            Openmooc is a free online training course platform <Dot>.</Dot>
+                            <Typing.Reset count={1} delay={500} />
                         </Title>
                     </Typing>
                     <Link to="/lessons">

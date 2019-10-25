@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../svg/Logo';
 import styled from 'styled-components';
 import { mainColor } from '../utils/theme';
+import Search from './Search';
 
 const Header = props => (
     <HeaderStyle>
@@ -11,15 +12,16 @@ const Header = props => (
             <Link to="/">
                <Logo />
             </Link>
+            <Search/>
             <NavLinks>
                 <Link to="/">
                     <LinkStyle>Home</LinkStyle>
                 </Link>
-                <Link to="/about">
-                    <LinkStyle>About</LinkStyle>
-                </Link>
                 <Link to="/courses">
                     <LinkStyle>Courses</LinkStyle>
+                </Link>
+                <Link to="/about">
+                    <LinkStyle>About</LinkStyle>
                 </Link>
                     <Register>
                         <HashLink to="/#register">
