@@ -4,39 +4,44 @@ import { mainColor, mainFont, secondaryFont } from '../utils/theme';
 import styled from 'styled-components';
 import Facebook from '../svg/facebook';
 
-const Login = props => (
-    <LoginStyle>
-        <div className="return-home">
-            <Link to="/">
-                Return Home
+const Login = props => {
+
+    const [iconColor,setIconColor] = React.useState("#475993")
+
+    return (
+        <LoginStyle>
+            <div className="return-home">
+                <Link to="/">
+                    Return Home
             </Link>
-        </div>
-        <FormStyle>
-            <FacebookLogin>
-                <Facebook/> Log in with facebook
+            </div>
+            <FormStyle>
+                <FacebookLogin onMouseEnter={()=>setIconColor("#fff")} onMouseLeave={()=>setIconColor("#475993")}>
+                    <Facebook fill={iconColor}/> Log in with facebook
             </FacebookLogin>
-            <Or>
-                or
+                <Or>
+                    or
             </Or>
-            <div>
                 <div>
-                    <input name="email" type="email" placeholder="email" />
+                    <div>
+                        <input name="email" type="email" placeholder="email" />
+                    </div>
+                    <div>
+                        <input name="password" type="password" placeholder="password" />
+                    </div>
                 </div>
-                <div>
-                    <input name="password" type="password" placeholder="password" />
-                </div>
-            </div>
-            <Submit>
-                Login
+                <Submit>
+                    Login
         </Submit>
-            <div>
-                <p>
-                    No account? <Link to="/">Register</Link>
-                </p>
-            </div>
-        </FormStyle>
-    </LoginStyle>
-)
+                <div>
+                    <p>
+                        No account? <Link to="/">Register</Link>
+                    </p>
+                </div>
+            </FormStyle>
+        </LoginStyle>
+    )
+}
 
 const LoginStyle = styled.div`
     height:100vh;

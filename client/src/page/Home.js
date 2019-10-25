@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Typing from 'react-typing-animation';
 import Header from '../components/Header';
 import SignUpForm from '../components/SignupForm';
 import { mainColor, mainFont, secondaryFont } from '../utils/theme';
@@ -16,9 +17,11 @@ const Home = () => {
             <Box>
                 <Header />
                 <InnerWrapperBox1>
-                    <Title>
-                        Openmooc is a free online training course <Dot>.</Dot>
-                    </Title>
+                    <Typing cursorClassName="yes">
+                        <Title>
+                            Openmooc is a free online training course <Dot>.</Dot>
+                        </Title>
+                    </Typing>
                     <Link to="/lessons">
                         <CallToAction href="/courses">
                             <span>Get started </span><Carret />
@@ -100,6 +103,11 @@ const HomeStyle = styled.div`
    flex-direction:column;
    justify-content:flex-start;
    color:white;
+
+   .cursor{
+       background-color:white;
+       color:white;
+   }
 `
 
 const InnerWrapperBox2 = styled.div`
@@ -161,6 +169,7 @@ const Title = styled.h1`
 font-weight:300;
 text-align:center;
 font-family:${secondaryFont};
+margin-bottom:5%;s
 `
 const Dot = styled.span`
   font-size:100px;
