@@ -22,7 +22,9 @@ const UploadPicture = ({ onPicture }) => {
         <label>
             {
                 !picture ?
-                    <UserIcon width={imageHeight} height={imageHeight} />
+                    <UploadButton>
+                        <UserIcon width={imageHeight} height={imageHeight} />
+                    </UploadButton>
                     :
                     <div className="preview-image-container">
                         <PreviewImage width={imageHeight} height={imageHeight}>
@@ -44,6 +46,15 @@ const UploadPicture = ({ onPicture }) => {
 
 export default UploadPicture;
 
+
+const UploadButton = styled.div`
+    cursor:pointer;
+    border-radius:50%;
+    &:hover{
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.5);
+        transition:0.5s;
+    }
+`
 
 const imageHeight = "80px";
 

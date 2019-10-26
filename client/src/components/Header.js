@@ -23,13 +23,14 @@ const Header = props => (
                 <Link to="/about">
                     <LinkStyle>About</LinkStyle>
                 </Link>
-                    <Register>
-                        <HashLink to="/#register">
+                <Link to="/login">
+                    <LinkStyle>Login</LinkStyle>
+                </Link>
+                <HashLink to="/#register">
                             <span>
                                 Register
                             </span>
-                        </HashLink>
-                    </Register>
+                </HashLink>
             </NavLinks>
         </Nav>
     </HeaderStyle>
@@ -37,14 +38,34 @@ const Header = props => (
 
 const HeaderStyle = styled.div`
    background-image: linear-gradient(to right,#57995D, ${mainColor});
-   width:100%;
-   position:absolute;
    top:0;
    left:0;
    height:60px;
    flex-direction:row;
    justify-content: space-around;
    align-items:center;
+
+   a[href="/#register"]{
+    display:inline-block;
+    border: 1px solid white;
+    padding:2%;
+    font-family: 'Raleway', sans-serif;
+    span{
+        color:white;
+    }
+    
+    &:hover{
+        background-color:white;
+        color:black;
+        cursor:pointer;
+        transition:0.3s;
+        box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+        span{
+            color: ${mainColor};
+            text-decoration:none;
+        }
+    }
+   }
 `
 
 
@@ -74,27 +95,4 @@ const LinkStyle = styled.span`
         color:white;
     }
 `
-const Register = styled.a`
-    display:inline-block;
-    border: 1px solid white;
-    padding:2%;
-    font-family: 'Raleway', sans-serif;
-    span{
-        color:white;
-    }
-    
-    &:hover{
-        background-color:white;
-        color:black;
-        cursor:pointer;
-        transition:0.3s;
-        box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
-        span{
-            color: ${mainColor}
-        }
-    }
-`
-
-
-
 export default Header;

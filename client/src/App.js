@@ -5,6 +5,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Login from './page/Login';
 import Home from './page/Home';
+import Courses from './page/Courses';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './fonts.css';
@@ -19,6 +20,7 @@ const App = props => (
     <Header />
       <Fragment>
         <Route exact path="/" component={Home} />
+        <Route exact path="/courses" component={Courses}/>
         <Route exact path="/login" component={Login}/>
       </Fragment>
     <Footer />
