@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faGraduationCap, faStar } from "@fortawesome/free-solid-svg-icons";
 import Login from './page/Login';
 import Home from './page/Home';
 import Courses from './page/Courses';
@@ -12,7 +12,7 @@ import './fonts.css';
 import './App.css';
 
 
-library.add(faSearch)
+library.add(faSearch,faGraduationCap,faStar);
 
 const App = props => (
   <Fragment>

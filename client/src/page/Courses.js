@@ -16,8 +16,6 @@ const CoursesPage = props =>(
 export default CoursesPage;
 
 const CoursesPageStyle = styled.div`
-    
-    min-height:100vh;
 
     .title-container{
         background-color:#eee;

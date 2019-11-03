@@ -11,6 +11,7 @@ const Courses = props =>(
 const CoursesList = styled.div`
     display:flex; 
     flex-wrap:wrap;
+    align-items:center;
 `
 
 export default Courses;
