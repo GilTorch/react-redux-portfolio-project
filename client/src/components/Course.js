@@ -4,13 +4,16 @@ import styled from "styled-components";
 import { mainColor } from "../utils/theme";
 
 const Rating = props => {
-  let stars = [];
+  const setStars = () => {
+    let stars = [];
+    for (let i = 0; i < props.rating; i++) {
+      stars.push(<FontAwesomeIcon icon="star" />);
+    }
 
-  for (let i = 0; i < props.rating; i++) {
-    stars.push(<FontAwesomeIcon icon="star" />);
-  }
+    return stars;
+  };
 
-  return <RatingStyle>{stars}</RatingStyle>;
+  return <RatingStyle>{setStars()}</RatingStyle>;
 };
 
 const Course = props => (
@@ -20,10 +23,12 @@ const Course = props => (
     </Cover>
     <div className="course-infos">
       <Title>{props.course.title}</Title>
-      <PriceAndRatingContainer>
-        <Price>{props.course.price}</Price>
-        <Rating rating={props.course.rating} />
-      </PriceAndRatingContainer>
+      <div className="price-and-rating-container">
+        <PriceAndRating>
+          <Price>{props.course.price} $</Price>
+          <Rating rating={props.course.rating} />
+        </PriceAndRating>
+      </div>
       <div className="teacher-students">
         <div>
           <FontAwesomeIcon icon="people-carry" />
@@ -39,7 +44,7 @@ const Course = props => (
 );
 
 const CourseCard = styled.div`
-  position:relative;
+  position: relative;
   width: 300px;
   margin: 10px;
   /* height:330px; */
@@ -60,6 +65,12 @@ const CourseCard = styled.div`
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
+
+  .price-and-rating-container {
+    display: block;
+    width: 100%;
+    height: 0;
+  }
 `;
 const Title = styled.h1`
   font-size: 1.5em;
@@ -72,16 +83,13 @@ const Cover = styled.div`
   overflow: hidden;
 `;
 
-const PriceAndRatingContainer = styled.div`
-  width:300px;
-  position: absolute;
-  z-index:10000;
-  top: 346px;
-  left:10px;
+const PriceAndRating = styled.div`
+  position: relative;
+  bottom: 120px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
 `;
 
 const Price = styled.div`

@@ -32,10 +32,10 @@ const CoursesPageStyle = styled.div`
 
 
 const courses = [
-    {title:"Javascript Online course",cover:require("../images/about-video.jpg"),students:43,price:"18 $",rating:4,teacher:"Adam"},
-    {title:"Ruby: From zero to hero",cover:require("../images/about.png"),students:43,price:"18 $",rating:4,teacher:"Eve"},
-    {title:"Ruby: From zero to hero",cover:require("../images/course01.jpg"),students:43,price:"18 $",rating:4,teacher:"Eve"},
-    {title:"Ruby: From zero to hero",cover:require("../images/course02.jpg"),students:43,price:"18 $",rating:4,teacher:"Eve"},
-    {title:"Ruby: From zero to hero",cover:require("../images/course02.jpg"),students:43,price:"18 $",rating:4,teacher:"Eve"},
-    {title:"Ruby: From zero to hero",cover:require("../images/course02.jpg"),students:43,price:"18 $",rating:4,teacher:"Eve"},
+    {title:"Javascript Online course",cover:require("../images/about-video.jpg"),students:43,price:23,rating:1,teacher:"Adam"},
+    {title:"Ruby: From zero to hero",cover:require("../images/about.png"),students:43,price:24,rating:4,teacher:"Eve"},
+    {title:"Ruby: From zero to hero",cover:require("../images/course01.jpg"),students:43,price:25,rating:5,teacher:"Eve"},
+    {title:"Ruby: From zero to hero",cover:require("../images/course02.jpg"),students:43,price:26,rating:4,teacher:"Eve"},
+    {title:"Ruby: From zero to hero",cover:require("../images/course02.jpg"),students:43,price:27,rating:2,teacher:"Eve"},
+    {title:"Ruby: From zero to hero",cover:require("../images/course02.jpg"),students:43,price:28,rating:3,teacher:"Eve"},
 ]
